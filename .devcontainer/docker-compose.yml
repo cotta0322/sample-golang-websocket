@@ -11,4 +11,4 @@ services:
       - 8080:8080
     volumes:
       - ..:/workspace
-      - /workspace/Client/node_modules
+      - /workspace/Frontend/node_modules
