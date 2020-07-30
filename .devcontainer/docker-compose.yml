@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  development:
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+      - 8080:8080
+    volumes:
+      - ..:/workspace
+      - /workspace/Client/node_modules
