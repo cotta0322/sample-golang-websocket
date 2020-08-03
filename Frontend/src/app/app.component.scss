@@ -1,0 +1,58 @@
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 40px 30px 40px 30px;
+
+  .app-area {
+    height: 100%;
+    width: 100%;
+    .message-disp-area {
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      width: 100%;
+      height: calc(100% - 250px);
+      border: 1px solid;
+      overflow-y: auto;
+
+      .row {
+        &.row-myself {
+          text-align: right;
+        }
+        .message {
+          display: inline-block;
+          width: 50%;
+          height: auto;
+          margin: 10px 10px 10px 10px;
+          padding: 10px 10px 10px 10px;
+          border: 2px solid #ff4081;
+          border-radius: 10px 10px 10px 10px;
+          text-align: left;
+          white-space: pre-wrap;
+          &.myself {
+            border: 2px solid #3f51b5;
+          }
+        }
+      }
+    }
+
+    .message-input-area {
+      width: 100%;
+      .message-input-field {
+        width: calc(100% - 120px);
+        textarea {
+          height: 200px;
+          resize: none;
+        }
+      }
+      .send-button {
+        margin-left: 20px;
+        height: 50px;
+        width: 100px;
+      }
+    }
+  }
+}
+
+
