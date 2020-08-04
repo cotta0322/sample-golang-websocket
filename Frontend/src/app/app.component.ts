@@ -1,7 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { ChatMessageService } from './service/chat-message/chat-message.service';
 
-interface ChatDataType {
-  user: 'other' | 'myself';
+interface DispChatDataModel {
+  isMyself: boolean;
   message: string;
 }
 
@@ -13,20 +14,13 @@ interface ChatDataType {
 export class AppComponent {
   @ViewChild('dispArea') dispArea: ElementRef;
 
-  SAMPLE_DATA: ChatDataType[] = [
-    { user: 'other', message: 'サンプルメッセージ' },
-    { user: 'myself', message: 'サンプルメッセージ\nサンプルデータ' },
-    { user: 'other', message: 'サンプルメッセージ' },
-    { user: 'myself', message: 'サンプルメッセージ' },
-    { user: 'other', message: 'サンプルメッセージ' },
-  ];
+  messageData: DispChatDataModel[] = [];
 
-  messageData = this.SAMPLE_DATA;
+  constructor(private chatMessageService: ChatMessageService) {}
 
-  submit(message: string) {
-    this.messageData.push({
-      user: 'myself',
-      message,
+  ngOnInit() {
+    this.chatMessageService.connect().subscribe((response) => {
+      console.log(response);
     });
   }
 
@@ -34,7 +28,11 @@ export class AppComponent {
     this.dispAreaToBottom();
   }
 
-  dispAreaToBottom() {
+  submit(message: string) {
+    this.chatMessageService.request({ message });
+  }
+
+  private dispAreaToBottom() {
     this.dispArea.nativeElement.scrollTop = this.dispArea.nativeElement.scrollHeight;
   }
 }

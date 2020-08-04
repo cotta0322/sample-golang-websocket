@@ -2,19 +2,30 @@
   <div class="app-area">
     <div class="message-disp-area" #dispArea>
       <ng-container *ngFor="let data of messageData">
-        <div class="row" [class.row-myself]="data.user == 'myself'">
-          <div class="message" [class.myself]="data.user == 'myself'">
-            {{data.message}}
+        <div class="row" [class.row-myself]="data.isMyself">
+          <div class="message" [class.myself]="data.isMyself">
+            {{ data.message }}
           </div>
         </div>
       </ng-container>
     </div>
     <div class="message-input-area">
-      <mat-form-field class="message-input-field" appearance="fill" floatLabel="always">
+      <mat-form-field
+        class="message-input-field"
+        appearance="fill"
+        floatLabel="always"
+      >
         <mat-label>Message</mat-label>
         <textarea matInput #messageInput></textarea>
       </mat-form-field>
-      <button class="send-button" mat-flat-button color="primary" (click)="submit(messageInput.value)">Send</button>
+      <button
+        class="send-button"
+        mat-flat-button
+        color="primary"
+        (click)="submit(messageInput.value)"
+      >
+        Send
+      </button>
     </div>
   </div>
 </div>
