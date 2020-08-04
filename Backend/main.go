@@ -22,6 +22,8 @@ func main() {
 		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
 	})
 
+	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("./www"))))
+
 	http.HandleFunc("/api/chat/message", func(w http.ResponseWriter, r *http.Request) {
 		websocket, err := upgrader.Upgrade(w, r, nil)
 		if err != nil {
