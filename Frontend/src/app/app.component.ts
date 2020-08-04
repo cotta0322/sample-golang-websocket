@@ -20,7 +20,10 @@ export class AppComponent {
 
   ngOnInit() {
     this.chatMessageService.connect().subscribe((response) => {
-      console.log(response);
+      this.messageData.push({
+        message: response.message,
+        isMyself: response.isMyself,
+      });
     });
   }
 

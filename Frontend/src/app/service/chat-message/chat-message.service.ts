@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { ChatMessageRequestModel } from './chat-message-request.model';
 import { ChatMessageResponseModel } from './chat-message-response.model';
 
 @Injectable()
 export class ChatMessageService {
-  private readonly URL = 'ws://' + window.location.host + '/api/chat';
+  private readonly URL = 'ws://' + window.location.host + '/api/chat/message';
 
   private socket: WebSocketSubject<any>;
 
@@ -16,7 +16,6 @@ export class ChatMessageService {
     }
     return this.socket.asObservable();
   }
-
   request(value: ChatMessageRequestModel) {
     this.socket.next(value);
   }
